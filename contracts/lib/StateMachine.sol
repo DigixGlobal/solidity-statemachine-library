@@ -1,10 +1,10 @@
 pragma solidity ^0.4.14;
 
-import "./LibraryDLL.sol";
+import "@digix/solidity-collections/contracts/lib/LibraryDLL.sol";
 
 library StateMachine {
- 
-  using LibraryDLL for LibraryDLL.BytesDLL; 
+
+  using LibraryDLL for LibraryDLL.BytesDLL;
 
   struct System {
     mapping(bytes32 => Item) items;
@@ -83,7 +83,7 @@ library StateMachine {
            internal
            returns (bool _success)
   {
-    _system.to_role[_entity] = _role_id; 
+    _system.to_role[_entity] = _role_id;
     _success = true;
   }
 
@@ -117,7 +117,7 @@ library StateMachine {
       address _item_tmp;
       assembly {
         _item_tmp := create(0,0,0)
-      } 
+      }
       _item = bytes32(_item_tmp);
       _system.items[_item].state = 1;
       require(_system.global_list.append(_item));
@@ -144,7 +144,7 @@ library StateMachine {
       _success = false;
     }
   }
-    
+
   function total_in_state(System storage _system, uint256 _state_id)
            public
            constant
