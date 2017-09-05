@@ -5,6 +5,7 @@ import "@digix/solidity-collections/contracts/lib/LibraryDLL.sol";
 
 contract TestStateMachine {
   using LibraryDLL for LibraryDLL.BytesDLL;
+  using StateMachine for StateMachine.System;
   StateMachine.System testSystem;
 
   // in this system there are:
@@ -80,150 +81,150 @@ contract TestStateMachine {
     _role_name = testSystem.role_ids_to_name[_role_id];
   }
 
-
+  // From here will be the wrapper function to test the StateMachine's methods
 
   function test_set_state_name(uint256 _state_id, bytes32 _state_name)
            returns (bool _success)
   {
-    _success = StateMachine.set_state_name(testSystem, _state_id, _state_name);
+    _success = testSystem.set_state_name(_state_id, _state_name);
   }
 
   function test_get_state_name(uint256 _state_id)
            returns (bytes32 _state_name)
   {
-    _state_name = StateMachine.get_state_name(testSystem, _state_id);
+    _state_name = testSystem.get_state_name(_state_id);
   }
 
   function test_get_item_state_id(bytes32 _item)
            returns (uint256 _state_id)
   {
-    _state_id = StateMachine.get_item_state_id(testSystem, _item);
+    _state_id = testSystem.get_item_state_id(_item);
   }
 
   function test_get_item_state_name(bytes32 _item)
            returns (bytes32 _state_name)
   {
-    _state_name = StateMachine.get_item_state_name(testSystem, _item);
+    _state_name = testSystem.get_item_state_name(_item);
   }
 
   function test_set_role_name(uint256 _role_id, bytes32 _role_name)
            returns (bool _success)
   {
-    _success = StateMachine.set_role_name(testSystem, _role_id, _role_name);
+    _success = testSystem.set_role_name(_role_id, _role_name);
   }
 
   function test_get_role_name(uint256 _role_id)
            returns (bytes32 _role_name)
   {
-    _role_name = StateMachine.get_role_name(testSystem, _role_id);
+    _role_name = testSystem.get_role_name(_role_id);
   }
 
   function test_get_entity_role_id(address _entity)
            returns (uint256 _role_id)
   {
-    _role_id = StateMachine.get_entity_role_id(testSystem, _entity);
+    _role_id = testSystem.get_entity_role_id(_entity);
   }
 
   function test_set_role(address _entity, uint256 _role_id)
            returns (bool _success)
   {
-    _success = StateMachine.set_role(testSystem, _entity, _role_id);
+    _success = testSystem.set_role(_entity, _role_id);
   }
 
   function test_unset_role(address _entity, uint256 _role_id)
            returns (bool _success)
   {
-    _success = StateMachine.unset_role(testSystem, _entity, _role_id);
+    _success = testSystem.unset_role(_entity, _role_id);
   }
 
   function test_grant_access(uint256 _by_role, uint256 _from_state, uint256 _to_state)
            returns (bool _success)
   {
-    _success = StateMachine.grant_access(testSystem, _by_role, _from_state, _to_state);
+    _success = testSystem.grant_access(_by_role, _from_state, _to_state);
   }
 
   function test_revoke_access(uint256 _by_role, uint256 _from_state, uint256 _to_state)
            returns (bool _success)
   {
-    _success = StateMachine.revoke_access(testSystem, _by_role, _from_state, _to_state);
+    _success = testSystem.revoke_access(_by_role, _from_state, _to_state);
   }
 
   function test_create_item(uint256 _by_role)
            returns (bool _success, bytes32 _item)
   {
-    (_success, _item ) = StateMachine.create_item(testSystem, _by_role);
+    (_success, _item ) = testSystem.create_item(_by_role);
   }
 
   function test_change_item_state(uint256 _by_role, bytes32 _item, uint256 _to_state)
            returns (bool _success, uint256 _from_state, uint256 _new_state)
   {
-    (_success, _from_state, _new_state) = StateMachine.change_item_state(testSystem, _by_role, _item, _to_state);
+    (_success, _from_state, _new_state) = testSystem.change_item_state(_by_role, _item, _to_state);
   }
 
   function test_total_in_state(uint256 _state_id)
            returns (uint256 _total_count)
   {
-    _total_count = StateMachine.total_in_state(testSystem, _state_id);
+    _total_count = testSystem.total_in_state(_state_id);
   }
 
   function test_total()
            returns (uint256 _global_count)
   {
-    _global_count = StateMachine.total(testSystem);
+    _global_count = testSystem.total();
   }
 
   function test_get_first_in_global()
            returns (bytes32 _item)
   {
-    _item = StateMachine.get_first_in_global(testSystem);
+    _item = testSystem.get_first_in_global();
   }
 
   function test_get_last_in_global()
            returns (bytes32 _item)
   {
-    _item = StateMachine.get_last_in_global(testSystem);
+    _item = testSystem.get_last_in_global();
   }
 
   function test_get_next_from_in_global(bytes32 _input_item)
            returns (bytes32 _item)
   {
-    _item = StateMachine.get_next_from_in_global(testSystem, _input_item);
+    _item = testSystem.get_next_from_in_global(_input_item);
   }
 
   function test_get_previous_from_in_global(bytes32 _input_item)
            returns (bytes32 _item)
   {
-    _item = StateMachine.get_previous_from_in_global(testSystem, _input_item);
+    _item = testSystem.get_previous_from_in_global(_input_item);
   }
 
 
   function test_get_first_in_state(uint256 _state_id)
            returns (bytes32 _item)
   {
-    _item = StateMachine.get_first_in_state(testSystem, _state_id);
+    _item = testSystem.get_first_in_state(_state_id);
   }
 
   function test_get_last_in_state(uint256 _state_id)
            returns (bytes32 _item)
   {
-    _item = StateMachine.get_last_in_state(testSystem, _state_id);
+    _item = testSystem.get_last_in_state(_state_id);
   }
 
   function test_get_next_from_in_state(uint256 _state_id, bytes32 _input_item)
            returns (bytes32 _item)
   {
-    _item = StateMachine.get_next_from_in_state(testSystem, _state_id, _input_item);
+    _item = testSystem.get_next_from_in_state(_state_id, _input_item);
   }
 
   function test_get_previous_from_in_state(uint256 _state_id, bytes32 _input_item)
            returns (bytes32 _item)
   {
-    _item = StateMachine.get_previous_from_in_state(testSystem, _state_id, _input_item);
+    _item = testSystem.get_previous_from_in_state(_state_id, _input_item);
   }
 
   function test_check_role_access(uint256 _role_id, uint256 _from_state, uint256 _to_state)
            returns (bool _yes)
   {
-    _yes = StateMachine.check_role_access(testSystem, _role_id, _from_state, _to_state);
+    _yes = testSystem.check_role_access(_role_id, _from_state, _to_state);
   }
 }
