@@ -35,6 +35,6 @@
   "author": "ace@dgx.io",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "@digix/solidity-collections": "file:../solidity-collections-library"
+    "@digix/solidity-collections": "^0.0.1"
   }
 }

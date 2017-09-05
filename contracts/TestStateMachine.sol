@@ -10,7 +10,8 @@ contract TestStateMachine {
   // in this system there are:
   //     - 1 address, with role 50, which is granted access for 0->1 and 100->110
   //     - 2 states: 100 and 110
-  //     - 1 item that is currently in state 100
+  //     - 2 items that is currently in state 100
+  //     -
   function setup_system_for_testing () {
     delete testSystem;
     testSystem.state_ids_to_name[100] = 'name_of_state_id_100';
@@ -21,8 +22,13 @@ contract TestStateMachine {
     testSystem.access_control[50][0][1] = true;
     testSystem.access_control[50][100][110] = true;
     testSystem.lists_by_state[100].append('test_item_name');
+    testSystem.lists_by_state[100].append('test_item_name_2');
     testSystem.global_list.append('test_item_name');
+    testSystem.global_list.append('test_item_name_2');
+
     testSystem.items['test_item_name'] = StateMachine.Item(100);
+    testSystem.items['test_item_name_2'] = StateMachine.Item(100);
+
   }
 
   function test_mock_get_access(uint256 _by_role, uint256 _from_state, uint256 _to_state)
@@ -31,24 +37,37 @@ contract TestStateMachine {
     _access = testSystem.access_control[_by_role][_from_state][_to_state];
   }
 
-  function test_mock_get_global_list_latest_item ()
-           returns (bytes32 _item)
-  {
-    uint256 global_list_length = testSystem.global_list.data.collection.length;
-    _item = testSystem.global_list.get(global_list_length);
-  }
-
   function test_mock_get_lists_by_states_latest_item (uint256 _state_id)
            returns (bytes32 _item)
   {
     uint256 lists_by_states1_length = testSystem.lists_by_state[_state_id].data.collection.length;
     _item = testSystem.lists_by_state[_state_id].get(lists_by_states1_length);
   }
+
   function test_mock_check_item_exists_in_list_by_states (uint256 _state_id, bytes32 _item)
            returns (bool _exist)
   {
     _exist = testSystem.lists_by_state[_state_id].find(_item) != 0;
   }
+
+  function test_mock_check_list_by_states_length (uint256 _state_id)
+           returns (uint256 _length)
+  {
+    _length = testSystem.lists_by_state[_state_id].data.collection.length;
+  }
+
+  function test_mock_check_item_exists_in_global_list (bytes32 _item)
+           returns (bool _exist)
+  {
+    _exist = testSystem.global_list.find(_item) != 0;
+  }
+
+  function test_mock_get_item_state(bytes32 _item)
+           returns (uint256 _state)
+  {
+    _state = testSystem.items[_item].state;
+  }
+
   function test_mock_get_state_name(uint256 _state_id)
            returns (bytes32 _state_name)
   {
@@ -139,5 +158,72 @@ contract TestStateMachine {
            returns (bool _success, uint256 _from_state, uint256 _new_state)
   {
     (_success, _from_state, _new_state) = StateMachine.change_item_state(testSystem, _by_role, _item, _to_state);
+  }
+
+  function test_total_in_state(uint256 _state_id)
+           returns (uint256 _total_count)
+  {
+    _total_count = StateMachine.total_in_state(testSystem, _state_id);
+  }
+
+  function test_total()
+           returns (uint256 _global_count)
+  {
+    _global_count = StateMachine.total(testSystem);
+  }
+
+  function test_get_first_in_global()
+           returns (bytes32 _item)
+  {
+    _item = StateMachine.get_first_in_global(testSystem);
+  }
+
+  function test_get_last_in_global()
+           returns (bytes32 _item)
+  {
+    _item = StateMachine.get_last_in_global(testSystem);
+  }
+
+  function test_get_next_from_in_global(bytes32 _input_item)
+           returns (bytes32 _item)
+  {
+    _item = StateMachine.get_next_from_in_global(testSystem, _input_item);
+  }
+
+  function test_get_previous_from_in_global(bytes32 _input_item)
+           returns (bytes32 _item)
+  {
+    _item = StateMachine.get_previous_from_in_global(testSystem, _input_item);
+  }
+
+
+  function test_get_first_in_state(uint256 _state_id)
+           returns (bytes32 _item)
+  {
+    _item = StateMachine.get_first_in_state(testSystem, _state_id);
+  }
+
+  function test_get_last_in_state(uint256 _state_id)
+           returns (bytes32 _item)
+  {
+    _item = StateMachine.get_last_in_state(testSystem, _state_id);
+  }
+
+  function test_get_next_from_in_state(uint256 _state_id, bytes32 _input_item)
+           returns (bytes32 _item)
+  {
+    _item = StateMachine.get_next_from_in_state(testSystem, _state_id, _input_item);
+  }
+
+  function test_get_previous_from_in_state(uint256 _state_id, bytes32 _input_item)
+           returns (bytes32 _item)
+  {
+    _item = StateMachine.get_previous_from_in_state(testSystem, _state_id, _input_item);
+  }
+
+  function test_check_role_access(uint256 _role_id, uint256 _from_state, uint256 _to_state)
+           returns (bool _yes)
+  {
+    _yes = StateMachine.check_role_access(testSystem, _role_id, _from_state, _to_state);
   }
 }
