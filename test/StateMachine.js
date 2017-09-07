@@ -1,21 +1,7 @@
-const a = require('awaiting');
+const { bN, myToAscii, testAddress, moreTestAddresses } = require('./testHelpers');
 
-const bN = web3.toBigNumber;
 const TestStateMachine = artifacts.require('./TestStateMachine.sol');
 
-// web3.toAscii results in some padding \u0000 at the end,
-// this function fixes this problem
-// link to issue: https://github.com/ethereum/web3.js/issues/337
-const myToAscii = function (input) { return web3.toAscii(input).replace(/\u0000/g, '') };
-const testAddress = '0x1cd24e853af2027df542551f393b1bd0db2f1a03';
-const moreTestAddresses = [
-  '0x817229b2d1cb37bf23b20185d59aff8595e52401',
-  '0x249b1bf054d2b2643a0e38948aa92ccb6c2ccd7e',
-  '0x54e3872db39fc3a1fa018688bff59dd6409b0a23',
-  '0x4db089d50f72996895dc4224c8c6fae0f104bc1d',
-  '0x74cd5f20ee949189bdc83f7f6088063eb7fdcc86',
-  '0xa1fada6e4f11770a672ca678d6290b311f53c256',
-];
 contract('StateMachine', function (addresses) {
   let testStateMachine;
 
@@ -31,7 +17,7 @@ contract('StateMachine', function (addresses) {
       assert.deepEqual(await testStateMachine.test_set_state_name.call(bN(123), 'name_of_state_id_123'), true);
       await testStateMachine.test_set_state_name(bN(123), 'name_of_state_id_123');
       assert.deepEqual(myToAscii(await testStateMachine.test_mock_get_state_name.call(bN(123))), 'name_of_state_id_123');
-    })
+    });
   });
 
   describe('get_state_name', function () {
@@ -72,7 +58,7 @@ contract('StateMachine', function (addresses) {
       assert.deepEqual(await testStateMachine.test_set_role_name.call(bN(111), 'name_of_role_id_111'), true);
       await testStateMachine.test_set_role_name(bN(111), 'name_of_role_id_111');
       assert.deepEqual(myToAscii(await testStateMachine.test_mock_get_role_name.call(bN(111))), 'name_of_role_id_111');
-    })
+    });
   });
 
   describe('get_role_name', function () {
@@ -185,7 +171,7 @@ contract('StateMachine', function (addresses) {
       await testStateMachine.test_change_item_state(bN(50), 'test_item_name', bN(110));
       assert.deepEqual(await testStateMachine.test_mock_check_item_exists_in_list_by_states.call(bN(110), 'test_item_name'), true);
     });
-    it('[role has access to change state] item\'s state is updated to new_state' , async function () {
+    it('[role has access to change state] item\'s state is updated to new_state', async function () {
       await testStateMachine.test_change_item_state(bN(50), 'test_item_name', bN(110));
       assert.deepEqual(await testStateMachine.test_mock_get_item_state.call('test_item_name'), bN(110));
     });
@@ -257,22 +243,22 @@ contract('StateMachine', function (addresses) {
   describe('get_first_in_state', function () {
     beforeEach(resetDataBeforeTest);
     it('[there are some items] returns correct first item in state_list', async function () {
-      assert.deepEqual(myToAscii(await testStateMachine.test_get_first_in_state.call(bN(100), )), 'test_item_name');
+      assert.deepEqual(myToAscii(await testStateMachine.test_get_first_in_state.call(bN(100))), 'test_item_name');
     });
     it('[there are no items] returns empty bytes32 ""', async function () {
       testStateMachine = await TestStateMachine.new();
-      assert.deepEqual(myToAscii(await testStateMachine.test_get_first_in_state.call(bN(100), )), '');
+      assert.deepEqual(myToAscii(await testStateMachine.test_get_first_in_state.call(bN(100))), '');
     });
   });
 
   describe('get_last_in_state', function () {
     beforeEach(resetDataBeforeTest);
     it('[there are some items] returns correct last item in state_list', async function () {
-      assert.deepEqual(myToAscii(await testStateMachine.test_get_last_in_state.call(bN(100), )), 'test_item_name_2');
+      assert.deepEqual(myToAscii(await testStateMachine.test_get_last_in_state.call(bN(100))), 'test_item_name_2');
     });
     it('[there are no items] returns empty bytes32 ""', async function () {
       testStateMachine = await TestStateMachine.new();
-      assert.deepEqual(myToAscii(await testStateMachine.test_get_last_in_state.call(bN(100), )), '');
+      assert.deepEqual(myToAscii(await testStateMachine.test_get_last_in_state.call(bN(100))), '');
     });
   });
 
@@ -301,14 +287,13 @@ contract('StateMachine', function (addresses) {
   describe('check_role_access', function () {
     beforeEach(resetDataBeforeTest);
     it('[role has access] returns true', async function () {
-      assert.deepEqual(await testStateMachine.test_check_role_access.call(bN(50),bN(100),bN(110)), true);
+      assert.deepEqual(await testStateMachine.test_check_role_access.call(bN(50), bN(100), bN(110)), true);
     });
     it('[role doesnt have access] returns false', async function () {
-      assert.deepEqual(await testStateMachine.test_check_role_access.call(bN(50),bN(100),bN(120)), false);
+      assert.deepEqual(await testStateMachine.test_check_role_access.call(bN(50), bN(100), bN(120)), false);
     });
     it('[role is not registered, has no permission] returns false', async function () {
-      assert.deepEqual(await testStateMachine.test_check_role_access.call(bN(900),bN(0),bN(1)), false);
+      assert.deepEqual(await testStateMachine.test_check_role_access.call(bN(900), bN(0), bN(1)), false);
     });
   });
-
 });
