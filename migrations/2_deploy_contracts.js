@@ -1,13 +1,12 @@
-var StateMachine = artifacts.require("StateMachine.sol");
-var LibraryDLL = artifacts.require("@digix/solidity-collections/contracts/lib/LibraryDLL.sol");
+const StateMachine = artifacts.require('./StateMachine.sol');
+const LibraryDLL = artifacts.require('./LibraryDLL.sol');
+const TestStateMachine = artifacts.require('./TestStateMachine.sol');
 
-module.exports = function(deployer) {
-  deployer.deploy(LibraryDLL)
-  .then(() => {
-    return deployer.link(LibraryDLL, StateMachine)
-  })
-  .then(() => {
-    return deployer.deploy(StateMachine);
-  });
-
+module.exports = function (deployer) {
+  deployer.deploy(LibraryDLL);
+  deployer.link(LibraryDLL, StateMachine);
+  deployer.link(LibraryDLL, TestStateMachine);
+  deployer.deploy(StateMachine);
+  deployer.link(StateMachine, TestStateMachine);
+  deployer.deploy(TestStateMachine);
 };
