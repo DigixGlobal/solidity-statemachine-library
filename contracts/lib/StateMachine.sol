@@ -1,6 +1,6 @@
-pragma solidity ^0.4.14;
+pragma solidity ^0.4.16;
 
-import "./LibraryDLL.sol";
+import "@digix/solidity-collections/contracts/lib/LibraryDLL.sol";
 
 library StateMachine {
  

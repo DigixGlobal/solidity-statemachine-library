@@ -1,8 +1,13 @@
-var ConvertLib = artifacts.require("./ConvertLib.sol");
-var MetaCoin = artifacts.require("./MetaCoin.sol");
+var StateMachine = artifacts.require("StateMachine.sol");
+var LibraryDLL = artifacts.require("@digix/solidity-collections/contracts/lib/LibraryDLL.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(ConvertLib);
-  deployer.link(ConvertLib, MetaCoin);
-  deployer.deploy(MetaCoin);
+  deployer.deploy(LibraryDLL)
+  .then(() => {
+    return deployer.link(LibraryDLL, StateMachine)
+  })
+  .then(() => {
+    return deployer.deploy(StateMachine);
+  });
+
 };
