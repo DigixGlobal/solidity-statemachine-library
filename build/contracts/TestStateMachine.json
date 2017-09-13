@@ -1,0 +1,691 @@
+{
+  "contract_name": "TestStateMachine",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_get_item_state_id",
+      "outputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "test_total",
+      "outputs": [
+        {
+          "name": "_global_count",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_get_last_in_state",
+      "outputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_entity",
+          "type": "address"
+        },
+        {
+          "name": "_role_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_unset_role",
+      "outputs": [
+        {
+          "name": "_success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_total_in_state",
+      "outputs": [
+        {
+          "name": "_total_count",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_mock_check_item_exists_in_list_by_states",
+      "outputs": [
+        {
+          "name": "_exist",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_input_item",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_get_previous_from_in_state",
+      "outputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_by_role",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_create_item",
+      "outputs": [
+        {
+          "name": "_success",
+          "type": "bool"
+        },
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "test_get_first_in_global",
+      "outputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_get_first_in_state",
+      "outputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "setup_system_for_testing",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_state_name",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_set_state_name",
+      "outputs": [
+        {
+          "name": "_success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_role_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_mock_get_role_name",
+      "outputs": [
+        {
+          "name": "_role_name",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_by_role",
+          "type": "uint256"
+        },
+        {
+          "name": "_from_state",
+          "type": "uint256"
+        },
+        {
+          "name": "_to_state",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_mock_get_access",
+      "outputs": [
+        {
+          "name": "_access",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_input_item",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_get_next_from_in_state",
+      "outputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_get_item_state_name",
+      "outputs": [
+        {
+          "name": "_state_name",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "test_get_last_in_global",
+      "outputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_role_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_from_state",
+          "type": "uint256"
+        },
+        {
+          "name": "_to_state",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_check_role_access",
+      "outputs": [
+        {
+          "name": "_yes",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_role_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_get_role_name",
+      "outputs": [
+        {
+          "name": "_role_name",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_by_role",
+          "type": "uint256"
+        },
+        {
+          "name": "_from_state",
+          "type": "uint256"
+        },
+        {
+          "name": "_to_state",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_revoke_access",
+      "outputs": [
+        {
+          "name": "_success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_role_id",
+          "type": "uint256"
+        },
+        {
+          "name": "_role_name",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_set_role_name",
+      "outputs": [
+        {
+          "name": "_success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_mock_check_list_by_states_length",
+      "outputs": [
+        {
+          "name": "_length",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_get_state_name",
+      "outputs": [
+        {
+          "name": "_state_name",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_by_role",
+          "type": "uint256"
+        },
+        {
+          "name": "_from_state",
+          "type": "uint256"
+        },
+        {
+          "name": "_to_state",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_grant_access",
+      "outputs": [
+        {
+          "name": "_success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_mock_get_lists_by_states_latest_item",
+      "outputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_input_item",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_get_next_from_in_global",
+      "outputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_state_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_mock_get_state_name",
+      "outputs": [
+        {
+          "name": "_state_name",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_mock_get_item_state",
+      "outputs": [
+        {
+          "name": "_state",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_input_item",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_get_previous_from_in_global",
+      "outputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_entity",
+          "type": "address"
+        }
+      ],
+      "name": "test_get_entity_role_id",
+      "outputs": [
+        {
+          "name": "_role_id",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_by_role",
+          "type": "uint256"
+        },
+        {
+          "name": "_item",
+          "type": "bytes32"
+        },
+        {
+          "name": "_to_state",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_change_item_state",
+      "outputs": [
+        {
+          "name": "_success",
+          "type": "bool"
+        },
+        {
+          "name": "_from_state",
+          "type": "uint256"
+        },
+        {
+          "name": "_new_state",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_item",
+          "type": "bytes32"
+        }
+      ],
+      "name": "test_mock_check_item_exists_in_global_list",
+      "outputs": [
+        {
+          "name": "_exist",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_entity",
+          "type": "address"
+        },
+        {
+          "name": "_role_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "test_set_role",
+      "outputs": [
+        {
+          "name": "_success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b5b611add8061001f6000396000f300606060405236156101845763ffffffff60e060020a6000350416626dbfb0811461018957806306a3220e146101b15780630de58a31146101d657806312a44f5f146101fe578063150980271461023457806324423ec51461025c57806328604b3a146102895780632faa6e40146102b4578063309f8615146102e457806331a0dd7a146103095780634a4c5d25146103315780634e6c6d8014610346578063534e152e1461037357806354bd91191461039b5780635bbbe199146103cb57806361bd835d146103f6578063747bd3461461041e57806378b6753614610443578063841501cf1461047357806388a8655f1461049b5780638ec1a001146104cb578063924eb8e5146104f8578063943dcc5614610520578063ab70a35614610548578063bc84cf5e14610578578063c412ce05146105a0578063c75318eb146105c8578063c9d749e0146105f0578063d0c7df2814610618578063db0efbf514610640578063ddadfd7514610671578063f7f0dfe4146106b3578063f8af1038146106dd575b600080fd5b341561019457600080fd5b61019f600435610713565b60405190815260200160405180910390f35b34156101bc57600080fd5b61019f61072d565b60405190815260200160405180910390f35b34156101e157600080fd5b61019f6004356107a6565b60405190815260200160405180910390f35b341561020957600080fd5b610220600160a060020a0360043516602435610827565b604051901515815260200160405180910390f35b341561023f57600080fd5b61019f600435610843565b60405190815260200160405180910390f35b341561026757600080fd5b6102206004356024356108c4565b604051901515815260200160405180910390f35b341561029457600080fd5b61019f600435602435610957565b60405190815260200160405180910390f35b34156102bf57600080fd5b6102ca6004356109e2565b604051911515825260208201526040908101905180910390f35b34156102ef57600080fd5b61019f610a00565b60405190815260200160405180910390f35b341561031457600080fd5b61019f600435610a79565b60405190815260200160405180910390f35b341561033c57600080fd5b610344610afa565b005b341561035157600080fd5b610220600435602435611005565b604051901515815260200160405180910390f35b341561037e57600080fd5b61019f600435611021565b60405190815260200160405180910390f35b34156103a657600080fd5b610220600435602435604435611036565b604051901515815260200160405180910390f35b34156103d657600080fd5b61019f600435602435611063565b60405190815260200160405180910390f35b341561040157600080fd5b61019f6004356110ee565b60405190815260200160405180910390f35b341561042957600080fd5b61019f611108565b60405190815260200160405180910390f35b341561044e57600080fd5b610220600435602435604435611181565b604051901515815260200160405180910390f35b341561047e57600080fd5b61019f600435611213565b60405190815260200160405180910390f35b34156104a657600080fd5b61022060043560243560443561122d565b604051901515815260200160405180910390f35b34156104d657600080fd5b61022060043560243561124b565b604051901515815260200160405180910390f35b341561050357600080fd5b61019f600435611267565b60405190815260200160405180910390f35b341561052b57600080fd5b61019f60043561127f565b60405190815260200160405180910390f35b341561055357600080fd5b610220600435602435604435611299565b604051901515815260200160405180910390f35b341561058357600080fd5b61019f6004356112b7565b60405190815260200160405180910390f35b34156105ab57600080fd5b61019f60043561134d565b60405190815260200160405180910390f35b34156105d357600080fd5b61019f6004356113ce565b60405190815260200160405180910390f35b34156105fb57600080fd5b61019f6004356113e3565b60405190815260200160405180910390f35b341561062357600080fd5b61019f6004356113f8565b60405190815260200160405180910390f35b341561064b57600080fd5b61019f600160a060020a0360043516611479565b60405190815260200160405180910390f35b341561067c57600080fd5b61068d600435602435604435611493565b604051921515835260208301919091526040808301919091526060909101905180910390f35b34156106be57600080fd5b6102206004356114ba565b604051901515815260200160405180910390f35b34156106e857600080fd5b610220600160a060020a036004351660243561153e565b604051901515815260200160405180910390f35b6000610725818363ffffffff61155a16565b90505b919050565b600073__StateMachine__________________________636946cca982806040516020015260405160e060020a63ffffffff8416028152600481019190915260240160206040518083038186803b151561078657600080fd5b6102c65a03f4151561079757600080fd5b50505060405180519150505b90565b600073__StateMachine__________________________63d4ce243d8284816040516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b151561080557600080fd5b6102c65a03f4151561081657600080fd5b50505060405180519150505b919050565b600061083a81848463ffffffff61157016565b90505b92915050565b600073__StateMachine__________________________63b59a7bb88284816040516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b151561080557600080fd5b6102c65a03f4151561081657600080fd5b50505060405180519150505b919050565b60008281526003602052604080822073__DoublyLinkedList______________________91630cf65c5d919085908590516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b151561093257600080fd5b6102c65a03f4151561094357600080fd5b505050604051805115159150505b92915050565b600073__StateMachine__________________________63ae139b22828585826040516020015260405160e060020a63ffffffff861602815260048101939093526024830191909152604482015260640160206040518083038186803b15156109bf57600080fd5b6102c65a03f415156109d057600080fd5b50505060405180519150505b92915050565b6000806109f5818463ffffffff61159716565b90925090505b915091565b600073__StateMachine__________________________6359b6d12b82806040516020015260405160e060020a63ffffffff8416028152600481019190915260240160206040518083038186803b151561078657600080fd5b6102c65a03f4151561079757600080fd5b50505060405180519150505b90565b600073__StateMachine__________________________6355e67ea48284816040516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b151561080557600080fd5b6102c65a03f4151561081657600080fd5b50505060405180519150505b919050565b600060068181556007829055600882905581908190818181610b1d600b82611a5e565b50507f6e616d655f6f665f73746174655f69645f3130300000000000000000000000007f083fc81be30b6287dea23aa60f8ffaf268f507cdeac82ed9644e506b59c54ff05550507f6e616d655f6f665f73746174655f69645f3131300000000000000000000000007fb5e89b7bb0a10081480a5ea36295c6b7a6de9e5a856df0efd526ab9bdcac253a5550507f6e616d655f6f665f726f6c655f69645f353000000000000000000000000000007f641a7e47c832ef1f4ef72e654761ca2c0b592dc5a9de41ec09261efc0afea2be555060327f5c2aa4fb3817d33b1f5b80587c4a6d89d935ef9b3f3b4cf2abeeb1ca62fd4000557fcf988a33f18398ca38ee49723fbc6591e6e46e9bcd00ada13df4fd5398fe7f338054600160ff1991821681179092557fa35e417ba65b2355b16b6c6efacbe7cec87182dc4450879593c476143fd9f30d80549091169091179055606460009081526003602052731cd24e853af2027df542551f393b1bd0db2f1a039073__DoublyLinkedList______________________9063582f30b4907f6b16ef514f22b74729cbea5cc7babfecbdc2309e530ca716643d11fe929eed2e906040516020015260405160e060020a63ffffffff841602815260048101919091527f746573745f6974656d5f6e616d65000000000000000000000000000000000000602482015260440160206040518083038186803b1515610d2d57600080fd5b6102c65a03f41515610d3e57600080fd5b5050506040518051505060646000908152600360205273__DoublyLinkedList______________________9063582f30b4907f6b16ef514f22b74729cbea5cc7babfecbdc2309e530ca716643d11fe929eed2e906040516020015260405160e060020a63ffffffff841602815260048101919091527f746573745f6974656d5f6e616d655f3200000000000000000000000000000000602482015260440160206040518083038186803b1515610df357600080fd5b6102c65a03f41515610e0457600080fd5b50505060405180515073__DoublyLinkedList______________________905063582f30b4600660006040516020015260405160e060020a63ffffffff841602815260048101919091527f746573745f6974656d5f6e616d65000000000000000000000000000000000000602482015260440160206040518083038186803b1515610e8e57600080fd5b6102c65a03f41515610e9f57600080fd5b50505060405180515073__DoublyLinkedList______________________905063582f30b4600660006040516020015260405160e060020a63ffffffff841602815260048101919091527f746573745f6974656d5f6e616d655f3200000000000000000000000000000000602482015260440160206040518083038186803b1515610f2957600080fd5b6102c65a03f41515610f3a57600080fd5b50505060405180519050506020604051908101604052606481527f746573745f6974656d5f6e616d6500000000000000000000000000000000000060009081526020527f026798fcdc710bc626946d4c6db06cce7da12e500b4ca24d89f2c794ab1c5cde81519055506020604051908101604052606481527f746573745f6974656d5f6e616d655f320000000000000000000000000000000060009081526020527f26783e8aced499fd416e5745eaf7dd3e2ddaa7da6f325cd7edd6da97a032dc7881519055505b50565b600061083a81848463ffffffff61172b16565b90505b92915050565b6000818152600560205260409020545b919050565b6000838152600260209081526040808320858452825280832084845290915290205460ff165b9392505050565b600073__StateMachine__________________________63ae89b0e6828585826040516020015260405160e060020a63ffffffff861602815260048101939093526024830191909152604482015260640160206040518083038186803b15156109bf57600080fd5b6102c65a03f415156109d057600080fd5b50505060405180519150505b92915050565b6000610725818363ffffffff61174816565b90505b919050565b600073__StateMachine__________________________63d9b0896482806040516020015260405160e060020a63ffffffff8416028152600481019190915260240160206040518083038186803b151561078657600080fd5b6102c65a03f4151561079757600080fd5b50505060405180519150505b90565b600073__StateMachine__________________________6343fb96ca82868686836040516020015260405160e060020a63ffffffff8716028152600481019490945260248401929092526044830152606482015260840160206040518083038186803b15156111ef57600080fd5b6102c65a03f4151561120057600080fd5b50505060405180519150505b9392505050565b6000610725818363ffffffff61176616565b90505b919050565b60006112418185858563ffffffff6117b016565b90505b9392505050565b600061083a81848463ffffffff6117e416565b90505b92915050565b6000818152600360205260409020600501545b919050565b6000610725818363ffffffff61180116565b90505b919050565b60006112418185858563ffffffff61184b16565b90505b9392505050565b60008181526003602052604080822060058101549173__DoublyLinkedList______________________9163fa8a04749184908690516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b151561132a57600080fd5b6102c65a03f4151561133b57600080fd5b50505060405180519250505b50919050565b600073__StateMachine__________________________6381e4d3e58284816040516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b151561080557600080fd5b6102c65a03f4151561081657600080fd5b50505060405180519150505b919050565b6000818152600460205260409020545b919050565b6000818152602081905260409020545b919050565b600073__StateMachine__________________________63e35ed5138284816040516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b151561080557600080fd5b6102c65a03f4151561081657600080fd5b50505060405180519150505b919050565b6000610725818363ffffffff61188216565b90505b919050565b600080806114a98187878763ffffffff6118a416565b919450925090505b93509350939050565b600073__DoublyLinkedList______________________630cf65c5d600684846040516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b151561151a57600080fd5b6102c65a03f4151561152b57600080fd5b505050604051805115159150505b919050565b600061083a81848463ffffffff611a3716565b90505b92915050565b6000818152602083905260409020545b92915050565b600160a060020a0382166000908152600180850160205260408220919091555b9392505050565b600081815260028301602090815260408083208380528252808320600180855292528220548291829160ff161515141561171a576000806000f0600160a060020a0381166000818152602088905260408082206001905591945091925073__DoublyLinkedList______________________9163582f30b49160068901918691516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b151561165557600080fd5b6102c65a03f4151561166657600080fd5b50505060405180519050151561167b57600080fd5b6001600090815260038601602052604080822073__DoublyLinkedList______________________9263582f30b492869190516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b15156116eb57600080fd5b6102c65a03f415156116fc57600080fd5b50505060405180519050151561171157600080fd5b60019250611722565b600092508291505b5b509250929050565b6000828152600484016020526040902081905560015b9392505050565b600061083a83611758858561155a565b611801565b90505b92915050565b600081151561179657507f6e6f6e650000000000000000000000000000000000000000000000000000000061083d565b5060008181526005830160205260409020545b5b92915050565b6000838152600285016020908152604080832085845282528083208484529091528120805460ff191690555b949350505050565b6000828152600584016020526040902081905560015b9392505050565b600081151561183157507f6e6f6e650000000000000000000000000000000000000000000000000000000061083d565b5060008181526004830160205260409020545b5b92915050565b6000838152600285016020908152604080832085845282528083208484529091528120805460ff191660011790555b949350505050565b600160a060020a03811660009081526001830160205260409020545b92915050565b600082815260208581526040808320548684526002880183528184208185528352818420858552909252822054829060ff16151560011415611a275760008581526020888152604080832087905586835260038a0190915280822073__DoublyLinkedList______________________926352c6bbf492899190516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b151561195c57600080fd5b6102c65a03f4151561196d57600080fd5b50505060405180515050600084815260038801602052604080822073__DoublyLinkedList______________________9263582f30b492899190516020015260405160e060020a63ffffffff85160281526004810192909252602482015260440160206040518083038186803b15156119e557600080fd5b6102c65a03f415156119f657600080fd5b505050604051805115156001149050611a0e57600080fd5b5060008481526020879052604090205460019250611a2c565b600092505b5b9450945094915050565b600160a060020a0382166000908152600180850160205260409091208290555b9392505050565b50805460008255600302906000526020600020908101906110029190611a83565b5b50565b6107a391905b80821115611aaa576000808255600182018190556002820155600301611a89565b5090565b905600a165627a7a72305820b8b5155f23b691a0200d6a2b3d80731e784e6aa6cca0bd6b6f5c7c122c93a7420029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1505284251577
+}

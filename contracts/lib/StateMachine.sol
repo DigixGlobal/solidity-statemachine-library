@@ -1,19 +1,19 @@
 pragma solidity ^0.4.16;
 
-import "@digix/solidity-collections/contracts/lib/LibraryDLL.sol";
+import "@digix/solidity-collections/contracts/lib/DoublyLinkedList.sol";
 
 library StateMachine {
 
-  using LibraryDLL for LibraryDLL.BytesDLL;
+  using DoublyLinkedList for DoublyLinkedList.Bytes;
 
   struct System {
     mapping(bytes32 => Item) items;
     mapping(address => uint256) to_role;
     mapping(uint256 => mapping (uint256 => mapping(uint256 => bool))) access_control;
-    mapping(uint256 => LibraryDLL.BytesDLL) lists_by_state;
+    mapping(uint256 => DoublyLinkedList.Bytes) lists_by_state;
     mapping(uint256 => bytes32) state_ids_to_name;
     mapping(uint256 => bytes32) role_ids_to_name;
-    LibraryDLL.BytesDLL global_list;
+    DoublyLinkedList.Bytes global_list;
   }
 
   struct Item {

@@ -1,11 +1,11 @@
 const StateMachine = artifacts.require('./StateMachine.sol');
-const LibraryDLL = artifacts.require('./LibraryDLL.sol');
+const DoublyLinkedList = artifacts.require('./DoublyLinkedList.sol');
 const TestStateMachine = artifacts.require('./TestStateMachine.sol');
 
 module.exports = function (deployer) {
-  deployer.deploy(LibraryDLL);
-  deployer.link(LibraryDLL, StateMachine);
-  deployer.link(LibraryDLL, TestStateMachine);
+  deployer.deploy(DoublyLinkedList);
+  deployer.link(DoublyLinkedList, StateMachine);
+  deployer.link(DoublyLinkedList, TestStateMachine);
   deployer.deploy(StateMachine);
   deployer.link(StateMachine, TestStateMachine);
   deployer.deploy(TestStateMachine);

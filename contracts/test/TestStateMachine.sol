@@ -1,10 +1,10 @@
 pragma solidity ^0.4.14;
 
-import './lib/StateMachine.sol';
-import "@digix/solidity-collections/contracts/lib/LibraryDLL.sol";
+import '../lib/StateMachine.sol';
+import "@digix/solidity-collections/contracts/lib/DoublyLinkedList.sol";
 
 contract TestStateMachine {
-  using LibraryDLL for LibraryDLL.BytesDLL;
+  using DoublyLinkedList for DoublyLinkedList.Bytes;
   using StateMachine for StateMachine.System;
   StateMachine.System testSystem;
 
