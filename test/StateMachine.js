@@ -161,10 +161,7 @@ contract('StateMachine', function (addresses) {
       await testStateMachine.test_change_item_state(bN(50), 'test_item_name', bN(110));
     });
     it('[role has access to change state] item is removed from lists_by_state[old_state]', async function () {
-      // Comment out the two console.log to clearly see that length of lists_by_state[old_state] is unchanged;
-      // console.log('before: length of lists_by_state[old_state] = ', (await testStateMachine.test_mock_check_list_by_states_length.call(bN(100))).toNumber());
       await testStateMachine.test_change_item_state(bN(50), 'test_item_name', bN(110));
-      // console.log('after: length of lists_by_state[old_state] = ', (await testStateMachine.test_mock_check_list_by_states_length.call(bN(100))).toNumber());
       assert.deepEqual(await testStateMachine.test_mock_check_item_exists_in_list_by_states.call(bN(100), 'test_item_name'), false);
     });
     it('[role has access to change state] item is added to lists_by_state[new_state]', async function () {
