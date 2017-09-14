@@ -95,13 +95,13 @@ contract('StateMachine', function (addresses) {
   describe('unset_role', function () {
     before(resetDataBeforeTest);
     it('[entity already has some role] successfully unset role, returns true', async function () {
-      assert.deepEqual(await testStateMachine.test_unset_role.call(testAddress, bN(888)), true);
-      await testStateMachine.test_unset_role(testAddress, bN(888));
+      assert.deepEqual(await testStateMachine.test_unset_role.call(testAddress), true);
+      await testStateMachine.test_unset_role(testAddress);
       assert.deepEqual(await testStateMachine.test_get_entity_role_id.call(testAddress), bN(0));
     });
     it('[entity has not been set any role] doesnt do anything, returns false', async function () {
-      assert.deepEqual(await testStateMachine.test_unset_role.call(moreTestAddresses[0], bN(888)), false);
-      await testStateMachine.test_unset_role(moreTestAddresses[0], bN(888));
+      assert.deepEqual(await testStateMachine.test_unset_role.call(moreTestAddresses[0]), false);
+      await testStateMachine.test_unset_role(moreTestAddresses[0]);
       assert.deepEqual(await testStateMachine.test_get_entity_role_id.call(moreTestAddresses[0]), bN(0));
     });
   });

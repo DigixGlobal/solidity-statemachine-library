@@ -39,7 +39,7 @@
     "ethereumjs-testrpc": "^3.9.2"
   },
   "dependencies": {
-    "@digix/solidity-collections": "^0.0.4",
+    "@digix/solidity-collections": "^0.1.0",
     "@digix/truffle-lightwallet-provider": "^0.1.2"
   },
   "author": "Anthony Eufemio <ace@dgx.io>",

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.14;
+pragma solidity ^0.4.16;
 
 import '../lib/StateMachine.sol';
 import "@digix/solidity-collections/contracts/lib/DoublyLinkedList.sol";
@@ -18,7 +18,7 @@ contract TestStateMachine {
     testSystem.state_ids_to_name[100] = 'name_of_state_id_100';
     testSystem.state_ids_to_name[110] = 'name_of_state_id_110';
     testSystem.role_ids_to_name[50] = 'name_of_role_id_50';
-    address testAddress = 0x1cd24e853af2027df542551f393b1bd0db2f1a03;
+    address testAddress = 0xe76aC07465f353FF8De7C8450C39E936c85FA283;
     testSystem.to_role[testAddress] = 50;
     testSystem.access_control[50][0][1] = true;
     testSystem.access_control[50][100][110] = true;
@@ -131,10 +131,10 @@ contract TestStateMachine {
     _success = testSystem.set_role(_entity, _role_id);
   }
 
-  function test_unset_role(address _entity, uint256 _role_id)
+  function test_unset_role(address _entity)
            returns (bool _success)
   {
-    _success = testSystem.unset_role(_entity, _role_id);
+    _success = testSystem.unset_role(_entity);
   }
 
   function test_grant_access(uint256 _by_role, uint256 _from_state, uint256 _to_state)

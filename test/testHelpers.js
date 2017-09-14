@@ -7,7 +7,7 @@ module.exports = {
     return web3.toAscii(input).replace(/\u0000/g, '');
   },
   bN: web3.toBigNumber,
-  testAddress: '0x1cd24e853af2027df542551f393b1bd0db2f1a03',
+  testAddress: '0xe76aC07465f353FF8De7C8450C39E936c85FA283',
   moreTestAddresses: [
     '0x817229b2d1cb37bf23b20185d59aff8595e52401',
     '0x249b1bf054d2b2643a0e38948aa92ccb6c2ccd7e',

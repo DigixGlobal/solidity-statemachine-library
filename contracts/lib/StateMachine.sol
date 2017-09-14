@@ -87,26 +87,40 @@ library StateMachine {
     _success = true;
   }
 
-  function unset_role(System storage _system, address _entity, uint256 _role_id)
+  function unset_role(System storage _system, address _entity)
            internal
            returns (bool _success)
   {
-    delete _system.to_role[_entity];
-    _success = true;
+    if (_system.to_role[_entity] == 0) {
+      _success = false;
+    } else {
+      delete _system.to_role[_entity];
+      _success = true;
+    }
   }
 
   function grant_access(System storage _system, uint256 _by_role, uint256 _from_state, uint256 _to_state)
            internal
            returns (bool _success)
   {
-    _system.access_control[_by_role][_from_state][_to_state] = true;
+    if (_system.access_control[_by_role][_from_state][_to_state] == false) {
+      _system.access_control[_by_role][_from_state][_to_state] = true;
+      _success = true;
+    } else {
+      _success = false;
+    }
   }
 
   function revoke_access(System storage _system, uint256 _by_role, uint256 _from_state, uint256 _to_state)
            internal
            returns (bool _success)
   {
-    _system.access_control[_by_role][_from_state][_to_state] = false;
+    if(_system.access_control[_by_role][_from_state][_to_state] == true) {
+      _system.access_control[_by_role][_from_state][_to_state] = false;
+      _success = true;
+    } else {
+      _success = false;
+    }
   }
 
   function create_item(System storage _system, uint256 _by_role)
@@ -134,13 +148,16 @@ library StateMachine {
            returns (bool _success, uint256 _from_state, uint256 _new_state)
   {
     _from_state = _system.items[_item].state;
+    bool _append_success;
+    bool _remove_success;
     if (_system.access_control[_by_role][_from_state][_to_state] == true) {
       _system.items[_item].state = _to_state;
-      _system.lists_by_state[_to_state].remove_item(_item) == true;
-      require(_system.lists_by_state[_to_state].append(_item) == true);
+      _append_success = _system.lists_by_state[_to_state].append(_item);
+      _remove_success = _system.lists_by_state[_from_state].remove_item(_item);
       _new_state = _system.items[_item].state;
-      _success = true;
+      _success = (_append_success == _remove_success);
     } else {
+      _new_state = _from_state;
       _success = false;
     }
   }
