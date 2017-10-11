@@ -147,19 +147,25 @@ library StateMachine {
            internal
            returns (bool _success, uint256 _from_state, uint256 _new_state)
   {
+
     _from_state = _system.items[_item].state;
+
     bool _append_success;
     bool _remove_success;
-    if (_system.access_control[_by_role][_from_state][_to_state] == true) {
-      _system.items[_item].state = _to_state;
-      _append_success = _system.lists_by_state[_to_state].append(_item);
-      _remove_success = _system.lists_by_state[_from_state].remove_item(_item);
-      _new_state = _system.items[_item].state;
-      _success = (_append_success == _remove_success);
-    } else {
-      _new_state = _from_state;
-      _success = false;
-    }
+    _new_state = _from_state;
+    _success = false;
+
+    if (_system.access_control[0][_from_state][_to_state] == true) {
+      _by_role = 0;
+      if (_system.access_control[_by_role][_from_state][_to_state] == true) {
+        _system.items[_item].state = _to_state;
+        _append_success = _system.lists_by_state[_to_state].append(_item);
+        _remove_success = _system.lists_by_state[_from_state].remove_item(_item);
+        _new_state = _system.items[_item].state;
+        _success = (_append_success == _remove_success);
+      }
+    } 
+
   }
 
   function total_in_state(System storage _system, uint256 _state_id)
