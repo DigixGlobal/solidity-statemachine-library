@@ -14,6 +14,7 @@ library StateMachine {
     mapping(uint256 => bytes32) state_ids_to_name;
     mapping(uint256 => bytes32) role_ids_to_name;
     DoublyLinkedList.Bytes global_list;
+    bytes32 seed;
   }
 
   struct Item {
@@ -123,16 +124,31 @@ library StateMachine {
     }
   }
 
+  function init(System storage _system)
+           internal
+           returns (bool _success)
+  {
+    require(_system.seed == bytes32(0x0));
+    _system.seed = bytes32(address(this));
+    _success = true;
+  }
+
+  function get_new_identifier(System storage _system)
+           internal
+           returns (bytes32 _new_id)
+  {
+    require(_system.seed != bytes32(0x0));
+    _system.seed = sha3(_system.seed, now);
+    _new_id = _system.seed;
+  }
+
   function create_item(System storage _system, uint256 _by_role)
            internal
            returns (bool _success, bytes32 _item)
   {
+    require(_system.seed != bytes32(0x0)); // system must be init-ed first, and hence seed must already have value
     if (_system.access_control[_by_role][0][1] == true) {
-      address _item_tmp;
-      assembly {
-        _item_tmp := create(0,0,0)
-      }
-      _item = bytes32(_item_tmp);
+      _item = get_new_identifier(_system);
       _system.items[_item].state = 1;
       require(_system.global_list.append(_item));
       require(_system.lists_by_state[1].append(_item));

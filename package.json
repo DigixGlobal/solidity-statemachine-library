@@ -1,6 +1,6 @@
 {
   "name": "@digix/solidity-statemachine",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "statemachine library for solidity",
   "main": "truffle.js",
   "directories": {

@@ -140,9 +140,17 @@ contract('StateMachine', function (addresses) {
     it('[role has access for 0=>1] successfully creates item, returns true and item name; item assigned state 1; item is added to global_list and lists_by_state[1]', async function () {
       const result = await testStateMachine.test_create_item.call(bN(50));
       assert.deepEqual(result[0], true);
+      const totalBefore = await testStateMachine.test_total.call();
+      const totalInStateBefore = await testStateMachine.test_total_in_state.call(bN(1));
+
       await testStateMachine.test_create_item(bN(50));
-      assert.deepEqual(await testStateMachine.test_mock_check_item_exists_in_global_list.call(result[1]), true);
-      assert.deepEqual(await testStateMachine.test_mock_check_item_exists_in_list_by_states.call(bN(1), result[1]), true);
+      const newlyAddedId = await testStateMachine.test_get_last_in_global.call();
+      const totalAfter = await testStateMachine.test_total.call();
+      const totalInStateAfter = await testStateMachine.test_total_in_state.call(bN(1));
+
+      assert.deepEqual(totalAfter, totalBefore.plus(1));
+      assert.deepEqual(totalInStateAfter, totalInStateBefore.plus(1));
+      assert.deepEqual(await testStateMachine.test_mock_check_item_exists_in_list_by_states.call(bN(1), newlyAddedId), true);
     });
     it('[role doesnt have access for 0=>1] doesnt do anything, returns (false, empty bytes32)', async function () {
       const result = await testStateMachine.test_create_item.call(bN(51));
