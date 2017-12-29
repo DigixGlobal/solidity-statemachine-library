@@ -15,6 +15,8 @@ contract TestStateMachine {
   //     -
   function setup_system_for_testing () {
     delete testSystem;
+    testSystem.init();
+    
     testSystem.state_ids_to_name[100] = 'name_of_state_id_100';
     testSystem.state_ids_to_name[110] = 'name_of_state_id_110';
     testSystem.role_ids_to_name[50] = 'name_of_role_id_50';
