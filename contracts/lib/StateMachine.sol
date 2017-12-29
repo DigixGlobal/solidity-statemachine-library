@@ -180,7 +180,7 @@ library StateMachine {
       _append_success = _system.lists_by_state[_to_state].append(_item);
       _remove_success = _system.lists_by_state[_from_state].remove_item(_item);
       _new_state = _system.items[_item].state;
-      _success = (_append_success == _remove_success);
+      _success = (_append_success && _remove_success);
     }
   }
 
