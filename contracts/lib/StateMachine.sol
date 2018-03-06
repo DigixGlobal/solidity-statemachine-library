@@ -31,6 +31,7 @@ library StateMachine {
 
   function get_state_name(System storage _system, uint256 _state_id)
            internal
+           constant
            returns (bytes32 _state_name)
   {
     if (_state_id == 0) {
@@ -42,6 +43,7 @@ library StateMachine {
 
   function get_item_state_id(System storage _system, bytes32 _item)
            internal
+           constant
            returns (uint256 _state_id)
   {
     _state_id = _system.items[_item].state;
@@ -49,6 +51,7 @@ library StateMachine {
 
   function get_item_state_name(System storage _system, bytes32 _item)
            internal
+           constant
            returns (bytes32 _state_name)
   {
     _state_name = get_state_name(_system, get_item_state_id(_system, _item));
@@ -64,6 +67,7 @@ library StateMachine {
 
   function get_role_name(System storage _system, uint256 _role_id)
            internal
+           constant
            returns (bytes32 _role_name)
   {
     if (_role_id == 0) {
@@ -75,6 +79,7 @@ library StateMachine {
 
   function get_entity_role_id(System storage _system, address _entity)
            internal
+           constant
            returns (uint256 _role_id)
   {
     _role_id = _system.to_role[_entity];
