@@ -1,4 +1,4 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.4.19;
 
 import "@digix/solidity-collections/contracts/lib/DoublyLinkedList.sol";
 
