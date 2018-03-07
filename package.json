@@ -1,6 +1,6 @@
 {
   "name": "@digix/solidity-statemachine",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "statemachine library for solidity",
   "main": "truffle.js",
   "directories": {
@@ -39,7 +39,7 @@
     "ethereumjs-testrpc": "^3.9.2"
   },
   "dependencies": {
-    "@digix/solidity-collections": "^1.0.3",
+    "@digix/solidity-collections": "^1.1.0",
     "@digix/truffle-lightwallet-provider": "^0.1.4"
   },
   "author": "Anthony Eufemio <ace@dgx.io>",

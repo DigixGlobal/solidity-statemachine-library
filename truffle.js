@@ -44,4 +44,9 @@ module.exports = {
       network_id: '*',
     },
   },
+  solc: {
+    optimizer: {
+      enabled: false,
+    },
+  },
 };
