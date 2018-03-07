@@ -143,7 +143,7 @@ library StateMachine {
            returns (bytes32 _new_id)
   {
     require(_system.seed != bytes32(0x0));
-    _system.seed = sha3(_system.seed, now);
+    _system.seed = keccak256(_system.seed, now);
     _new_id = _system.seed;
   }
 
